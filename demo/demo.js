@@ -1,16 +1,7 @@
-import { div } from "../src/div.js";
+import { Div } from "../src/div.js";
 
-const myDiv = (properties, ...children) => {
-    const myProperties = {
-        style: {
-            display: "flex"
-        }
-    }
-    return div([myProperties, properties], ...children);
-}
-
-const div1 = myDiv({style: { backgroundColor: "red", width: "256px", height: "256px" }}, 
-    div({style: { backgroundColor: "green", width: "64px", height: "64px" }}),
+const div1 = Div({style:{width: "320px", height: "200px", backgroundColor: "yellow"}},
+    Div({style:{width: "64px", height: "32px", backgroundColor: "cyan"}}),
     "some text");
 
 document.body.append(div1);
