@@ -4,6 +4,8 @@ import { isString, isNode } from "./util.js";
 export const Node = (node, ...entries) => {
     EventTarget(node);
 
+    console.assert(isNode(node), "JUST: Node(): 'node' not an instance of 'Node'.");
+
     //iterate entries
     for(const entry of entries) {
         //if entry is node, append it as a child
