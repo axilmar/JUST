@@ -32,3 +32,10 @@ export const isElement = (v) => v instanceof Element;
  * @returns true if it is an instance of HTMLElement, false otherwise.
  */
 export const isHTMLElement = (v) => v instanceof HTMLElement;
+
+/**
+ * Checks if the given object is an instance of HTMLInputElement.
+ * @param {*} v the object to check if it is an instance of HTMLInputElement.
+ * @returns true if it is an instance of HTMLInputElement, false otherwise.
+ */
+export const isHTMLInputElement = (v) => v instanceof HTMLInputElement;
