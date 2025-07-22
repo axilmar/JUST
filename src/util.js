@@ -6,6 +6,13 @@
 export const isString = (v) => v instanceof String || typeof v === "string";
 
 /**
+ * Checks if the given object is a regular expression.
+ * @param v the object to check if it is a regular expression.
+ * @return true if it is a regular expression, false otherwise.
+ */
+export const isRegExp = (v) => v instanceof RegExp;
+
+/**
  * Checks if the given object is an instance of EventTarget.
  * @param {*} v the object to check if it is an instance of EventTarget.
  * @returns true if it is an instance of EventTarget, false otherwise.
