@@ -44,11 +44,23 @@ const productList = ol(
 document.body.append(productList);
 
 document.body.append(a("http://www.wikipedia.org/", "wikipedia"));
+document.body.append(" | ");
+document.body.append(a("/bar/foo1", "/bar/foo1"));
+document.body.append(" | ");
+document.body.append(a("/bar/foo2", "/bar/foo2"));
+document.body.append(" | ");
+document.body.append(a("/foo1", "/foo1"));
+document.body.append(" | ");
+document.body.append(a("/foo2", "/foo2"));
+document.body.append(" | ");
+document.body.append(a("/", "/"));
 
 Router(
     Route("/dashboard", () => { console.log("Selected dashboard at " + new Date()); productList.style.display = "none"; }),
     Route("/products", () => { console.log("Selected products at " + new Date()); productList.style.display = "block"; },
         Route("/:productId", (params) => { console.log(`Selected product ${params.productId} at ${new Date().toString()}`); })),
     Route("/user", () => { console.log("Selected user at " + new Date()); productList.style.display = "none"; }),
-    Route("/", () => navigate("/dashboard")),
+    Route(/\/bar\/.+/, () => { console.log("invalid route /bar/.+"); navigate("/"); }),
+    Route("/.+", () => { console.log("invalid route /.+"); navigate("/"); }),
+    Route("/", () => navigate("/dashboard"))
 );

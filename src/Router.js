@@ -1,4 +1,4 @@
-import { isString, isRegExp } from "./util.js";
+import { isString, isRegExp, replaceAt } from "./util.js";
 
 const urlSpecialChars = ['/', '\\?', '=', '&', '#'];
 const urlReplacementChars = ['/', '?', '=', '&', '#'];
@@ -91,6 +91,7 @@ const getStringPatternMatchFunc = (pattern) => {
     let index = 0;
     let newPattern = "^";
 
+    //replace parameters
     while (true) {
         //find the next parameter index; if not found, put the rest of the string in the new pattern
         const paramIndex = pattern.indexOf(':', index);

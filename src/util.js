@@ -46,3 +46,15 @@ export const isHTMLElement = (v) => v instanceof HTMLElement;
  * @returns true if it is an instance of HTMLInputElement, false otherwise.
  */
 export const isHTMLInputElement = (v) => v instanceof HTMLInputElement;
+
+/**
+ * Replace string at specific position.
+ * @param {String} str string to do the replacement for.
+ * @param {Number} index index to replace at.
+ * @param {Number} length number of characters to replace.
+ * @param {String} replacement replacement string.
+ * @returns a new string.
+ */
+export const replaceAt = (str, index, length, replacement) => {
+    return str.substring(0, index) + replacement + str.substring(index + length);
+}
