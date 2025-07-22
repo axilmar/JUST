@@ -1,8 +1,8 @@
 import { HTMLElement } from "./HTMLElement.js";
 
-export const Button = (...entries) => {
+export const button = (...entries) => {
     const defaultProps = {
-        className: "Element HTMLElement Button"
+        className: "Element HTMLElement button"
     };
 
     return HTMLElement(document.createElement("button"), defaultProps, ...entries);

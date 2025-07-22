@@ -1,8 +1,8 @@
 import { HTMLElement } from "./HTMLElement.js";
 
-export const Span = (...entries) => {
+export const span = (...entries) => {
     const defaultProps = {
-        className: "Element HTMLElement Span"
+        className: "Element HTMLElement span"
     };
 
     return HTMLElement(document.createElement("span"), defaultProps, ...entries);

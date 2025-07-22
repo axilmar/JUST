@@ -1,8 +1,8 @@
 import { HTMLElement } from "./HTMLElement.js";
 
-export const Label = (...entries) => {
+export const label = (...entries) => {
     const defaultProps = {
-        className: "Element HTMLElement Label"
+        className: "Element HTMLElement label"
     };
 
     return HTMLElement(document.createElement("label"), defaultProps, ...entries);

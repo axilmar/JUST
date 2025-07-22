@@ -1,9 +1,9 @@
 import { HTMLElement } from "./HTMLElement.js";
 
-export const Div = (...entries) => {
+export const div = (...entries) => {
 
     const defaultProps = {
-        className: "Element HTMLElement Div",
+        className: "Element HTMLElement div",
         style: {
             "box-sizing": "border-box"
         }
