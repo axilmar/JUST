@@ -54,7 +54,7 @@ const getLocalURL = (href) => {
         return null;
     }
     catch (ex) {
-        return href?.startsWith('/') ? href : null;
+        return href;
     }
 }
 
