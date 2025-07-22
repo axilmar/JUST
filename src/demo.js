@@ -43,6 +43,8 @@ const productList = ol(
 
 document.body.append(productList);
 
+document.body.append(a("http://www.wikipedia.org/", "wikipedia"));
+
 Router(
     Route("/dashboard", () => { console.log("Selected dashboard at " + new Date()); productList.style.display = "none"; }),
     Route("/products", () => { console.log("Selected products at " + new Date()); productList.style.display = "block"; },

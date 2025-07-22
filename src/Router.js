@@ -63,7 +63,8 @@ document.addEventListener("click", (event) => {
     if (event.target.matches("a")) {
         const localURL = getLocalURL(event.target.href);
         if (localURL) {
-            event.preventDefault();        
+            event.preventDefault();
+            history.pushState(null, null, localURL);
             activateSpecificRoute(localURL);
         }
     }
