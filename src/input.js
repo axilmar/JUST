@@ -2,7 +2,7 @@ import { HTMLInputElement } from "./HTMLInputElement.js";
 
 export const input = (...entries) => {
     const defaultProps = {
-        className: "Element HTMLElement HTMLInputElement input",
+        className: "+input",
         type: "text"
     };
 

@@ -5,7 +5,7 @@ export const HTMLInputElement = (htmlInputElement, ...entries) => {
     console.assert(isHTMLInputElement(htmlInputElement), "JUST: HTMLInputElement(): 'htmlInputElement' not an instance of 'HTMLInputElement'.");
 
     const defaultProps = {
-        className: "Element HTMLElement HTMLInputElement"
+        className: "+HTMLInputElement"
     };
 
     return HTMLElement(htmlInputElement, defaultProps, ...entries);

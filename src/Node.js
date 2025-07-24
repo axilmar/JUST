@@ -1,5 +1,5 @@
 import { EventTarget } from "./EventTarget.js";
-import { isString, isNode } from "./util.js";
+import { isString, isNode, isElement, isHTMLElement } from "./util.js";
 
 export const Node = (node, ...entries) => {
     EventTarget(node);
@@ -20,26 +20,29 @@ export const Node = (node, ...entries) => {
 
         //else set properties from entry
         else {
-            const isHTMLElement = node instanceof HTMLElement;
+            const isElementValue = isElement(node);
+            const isHTMLElementValue = isHTMLElement(node);
 
             //iterate properties of entry
             for(const propertyName in entry) {
                 const propertyValue = entry[propertyName]; 
 
-                //if property name is 'style',
-                //and the node is an html lement,
-                //and the value is not a string,
-                //then set separate style properties.
-                if (propertyName === "style" && isHTMLElement && !isString(propertyValue)) {
+                //add class name if class name is prefixed with '+'
+                if (propertyName === "className" && isElement(node) && propertyValue.startsWith('+')) {
+                    node.classList.add(propertyValue.substring(1));
+                    continue;
+                }
+
+                //set html element style from property object
+                if (propertyName === "style" && isHTMLElement(node) && !isString(propertyValue)) {
                     for(const stylePropertyName in propertyValue) {
                         node.style[stylePropertyName] = propertyValue[stylePropertyName];
                     }
+                    continue;
                 }
 
-                //else set normal property
-                else {
-                    node[propertyName] = propertyValue;
-                }
+                //otherwise set normal property
+                node[propertyName] = propertyValue;
             }
         }
     }

@@ -6,3 +6,5 @@ document.body.style.height = "100%";
 document.body.style["box-sizing"] = "border-box";
 document.body.style.margin = 0;
 document.body.style.overflow = "hidden";
+document.body.className = "body";
+

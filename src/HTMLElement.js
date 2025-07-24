@@ -5,7 +5,7 @@ export const HTMLElement = (htmlElement, ...entries) => {
     console.assert(isHTMLElement(htmlElement), "JUST: HTMLElement(): 'htmlElement' not an instance of 'HTMLElement'.");
 
     const defaultProps = {
-        className: "Element HTMLElement",
+        className: "+HTMLElement",
         style: {
             overflow: "hidden"
         }        

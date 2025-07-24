@@ -81,3 +81,8 @@ Router(
     Route("/.+", () => { console.log("invalid route /.+"); navigate("/"); }),
     Route("/", () => navigate("/dashboard"))
 );
+
+const div2 = document.createElement("div");
+div2.className = "class1";
+div2.className = " class2";
+console.log(div2.className);

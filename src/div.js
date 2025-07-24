@@ -3,7 +3,7 @@ import { HTMLElement } from "./HTMLElement.js";
 export const div = (...entries) => {
 
     const defaultProps = {
-        className: "Element HTMLElement div",
+        className: "+div",
         style: {
             "box-sizing": "border-box"
         }
