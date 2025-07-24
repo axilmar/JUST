@@ -1,7 +1,7 @@
 import { isString, isRegExp, replaceAt } from "./util.js";
 
-const urlSpecialChars = ['/', '\\?', '=', '&', '#'];
-const urlReplacementChars = ['/', '?', '=', '&', '#'];
+const urlSpecialChars = ['/', '?', '=', '&', '#'];
+const urlReplacementChars = ['\\/', '\\?', '=', '&', '#'];
 
 //the active routes
 let activeRoutes = [];
@@ -140,10 +140,56 @@ const getStringPatternMatchFunc = (pattern) => {
 
 /**
  * Constructs a route object.
- * Parameters in strings should be valid Javascript identifiers.
- * @param {String|RegExp|(str:String)=>{success:Boolean, rest:String, params: *}} pattern either a string to match (with parameters prefixed with ':'), or a regular expression to use for matching (named parameters supported), or a function that accepts a string and returns success, the remaining string to parse and the parsed parameters.
- * @param {({*})=>void} onActivate a function to call when there is a match; it is passed a parameters object of key to value pairs with the parameters parsed within the matched string.
+ * 
+ * @param {String|RegExp|(str:String)=>{success:Boolean, rest:String, params: {*}}} pattern 
+ *  Object to use for matching against a portion of the tested url.
+ * 
+ *  It can be:
+ *      - a string.
+ *      - a regular expression.
+ *      - a function.
+ * 
+ *  If it is a string, then it can contain parameters that start with ':'; 
+ *  for example, the string '/customer/:id/data' will match anything where ':id' is, 
+ *  then a parameter named 'id' with the matched data as the value will be added to the parameters.
+ * 
+ *  Strings can also contain regular expressions; for example, '/customer/:id/data/.+' 
+ *  matches anything non-empty after '/data/'.
+ *   
+ *  If it is a regular expression, then named capture groups will create parameters
+ *  with the same name; for example, the regular expression '\/customers\/(?<id>[^\/]+)\/data'
+ *  will capture data for a parameter named 'id', as in the above example with strings.
+ * 
+ *  If it is a function, then it must accept a string, which is the part of the url not matched yet,
+ *  and must return an object like this: 
+ * 
+ *      {
+ *          success: Boolean, //indicates success or failure of parse yet.
+ *          rest: String,     //the rest of the string that is not parsed yet.
+ *          params: {*}       //object with key-value pairs which represent the parsed parameters.
+ *      }
+ * 
+ *  The parameters created above will be passed to the 'onActivate' function to activate the route.
+ * 
+ *  There is no structure imposed on the patterns; they may start with '/' or may not;
+ *  even the search query can be matched and parameters extracted from it. For example:
+ * 
+ *      '/customers/:id/data?min-order-id=:minOrderId&max-order-id=:maxOrderId
+ * 
+ *  In the above pattern, if the url is '/customers/1/data?min-order-id=6&max-order-id=23
+ *  the following params object will be passed to the activate function:
+ * 
+ *      {
+ *          id : 1,
+ *          minOrderId: 6,
+ *          maxOrderId: 23
+ *      }
+ * 
+ * @param {({*})=>void} onActivate a function to call when there is a match; 
+ *  it is passed a parameters object of key to value pairs with the parameters parsed within the matched string.
+ * 
  * @param  {...any} children children routes; order of routes is important.
+ * 
  * @returns a route object.
  */
 export const Route = (pattern, onActivate, ...children) => {
@@ -181,17 +227,16 @@ export const Router = (...routes) => {
  * @param {String} url url to navigate to.
  * @param {{replace: Boolean, state: *}} options optional option object that defines a replace/push flag and an optional state.
  */
-export const navigate = (url, options) => {
+export const navigate = (url, {replace, state} = {replace: false, state: null}) => {
     //check if url is valid
     new URL(url, `${window.location.protocol}//${window.location.hostname}${window.location.port?.length > 0 ? `:${window.location.port}` : ""}`);
 
     //handle push/replace
-    const replace = options?.replace;
     if (replace) {
-        history.replaceState(options?.state, null, url);
+        history.replaceState(state, null, url);
     }
     else {
-        history.pushState(options?.state, null, url);
+        history.pushState(state, null, url);
     }
 
     //activate route
