@@ -1,3 +1,5 @@
+import "./init.js";
+
 /**
  * Checks if the given object is a string.
  * @param {*} v the object to check if it is a string.

@@ -1,8 +1,15 @@
 import { Element } from "./Element.js";
 import { isHTMLElement } from "./util.js";
 
-export const HTMLElement = (htmlElement, ...entries) => {
-    console.assert(isHTMLElement(htmlElement), "JUST: HTMLElement(): 'htmlElement' not an instance of 'HTMLElement'.");
+/**
+ * Base html element constructor.
+ * It sets all elements to have hidden overlow, in order to better control where scrollbars appear.
+ * @param {HTMLElement} element the element to set the properties of and children.
+ * @param {...any} entries array of property objects or nodes to add to this element.
+ * @returns the given element.
+ */
+export const HTMLElement = (element, ...entries) => {
+    console.assert(isHTMLElement(element), "JUST: HTMLElement(): 'object' not an instance of 'HTMLElement'.");
 
     const defaultProps = {
         className: "+HTMLElement",
@@ -11,5 +18,5 @@ export const HTMLElement = (htmlElement, ...entries) => {
         }        
     };
 
-    return Element(htmlElement, defaultProps, ...entries);
+    return Element(element, defaultProps, ...entries);
 }
