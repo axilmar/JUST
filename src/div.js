@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'div' element.
@@ -10,9 +10,10 @@ export const div = (...entries) => {
     const defaultProps = {
         className: "+div",
         style: {
-            "box-sizing": "border-box"
+            "box-sizing": "border-box",
+            "overflow": "hidden"
         }
     };
 
-    return HTMLElement(document.createElement("div"), defaultProps, ...entries);
+    return Element(document.createElement("div"), defaultProps, ...entries);
 }

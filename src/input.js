@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLInputElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates an 'input' element.
@@ -11,5 +11,5 @@ export const input = (...entries) => {
         type: "text"
     };
 
-    return HTMLElement(document.createElement("input"), defaultProps, ...entries);
+    return Element(document.createElement("input"), defaultProps, ...entries);
 }

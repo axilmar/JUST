@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'fieldset' element.
@@ -10,5 +10,5 @@ export const fieldset = (...entries) => {
         className: "+fieldset"
     };
 
-    return HTMLElement(document.createElement("fieldset"), defaultProps, ...entries);
+    return Element(document.createElement("fieldset"), defaultProps, ...entries);
 }

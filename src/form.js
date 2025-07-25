@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'form' element.
@@ -10,5 +10,5 @@ export const form = (...entries) => {
         className: "+form"
     };
 
-    return HTMLElement(document.createElement("form"), defaultProps, ...entries);
+    return Element(document.createElement("form"), defaultProps, ...entries);
 }

@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'button' element.
@@ -10,5 +10,5 @@ export const button = (...entries) => {
         className: "+button"
     };
 
-    return HTMLElement(document.createElement("button"), defaultProps, ...entries);
+    return Element(document.createElement("button"), defaultProps, ...entries);
 }

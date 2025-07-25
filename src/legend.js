@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'legend' element.
@@ -10,5 +10,5 @@ export const legend = (...entries) => {
         className: "+legend"
     };
 
-    return HTMLElement(document.createElement("legend"), defaultProps, ...entries);
+    return Element(document.createElement("legend"), defaultProps, ...entries);
 }

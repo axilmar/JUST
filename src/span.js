@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'span' element.
@@ -10,5 +10,5 @@ export const span = (...entries) => {
         className: "+span"
     };
 
-    return HTMLElement(document.createElement("span"), defaultProps, ...entries);
+    return Element(document.createElement("span"), defaultProps, ...entries);
 }

@@ -1,4 +1,4 @@
-import { HTMLElement } from "./HTMLElement.js";
+import { Element } from "./Element.js";
 
 /**
  * Creates a 'label' element.
@@ -10,5 +10,5 @@ export const label = (...entries) => {
         className: "+label"
     };
 
-    return HTMLElement(document.createElement("label"), defaultProps, ...entries);
+    return Element(document.createElement("label"), defaultProps, ...entries);
 }
